@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Grievance Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🏛️ Admin Portal</h1>
+        <nav>
+            <a href="index.html">Login Portal</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="auth-container">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <input type="email" id="admin-email" placeholder="Admin Email" required>
+                <input type="password" id="admin-password" placeholder="Password" required>
+                <button type="submit">Login to Dashboard</button>
+            </form>
+            <p id="error-msg" style="color: red; text-align: center; display: none;"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, signInWithEmailAndPassword, signOut } from './js/ai.js';
+
+        const loginForm = document.getElementById('admin-login-form');
+        const errorMsg = document.getElementById('error-msg');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const ADMIN_EMAILS = ["admin@municipality.com", "mukulguptaalw2006@gmail.com"];
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await signOut(auth);
+                window.location.href = "index.html";
+            });
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+
+            if (!ADMIN_EMAILS.includes(email)) {
+                errorMsg.textContent = "Access Denied: Not an admin account.";
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = "admin.html";
+            } catch (error) {
+                errorMsg.textContent = "Login Failed: " + error.message;
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
