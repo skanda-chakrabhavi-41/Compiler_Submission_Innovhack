@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipality Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🏛️ Municipality Admin</h1>
+        <nav>
+            <a href="#" id="logoutBtn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="analytics-panel">
+            <h2>Dashboard Overview</h2>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <h2 id="total-count">0</h2>
+                    <p>Total Grievances</p>
+                </div>
+                <div class="stat-box">
+                    <h2 id="pending-count" style="color: #f1c40f;">0</h2>
+                    <p>Pending</p>
+                </div>
+                <div class="stat-box">
+                    <h2 id="resolved-count" style="color: #2ecc71;">0</h2>
+                    <p>Resolved</p>
+                </div>
+            </div>
+            <hr>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3>🤖 AI Insights</h3>
+                <button id="generate-insights-btn" style="width: auto; padding: 5px 15px; font-size: 0.9rem;">Generate Insights</button>
+            </div>
+            <div id="ai-suggestions" style="background: #e8f4f8; padding: 1rem; border-radius: 4px; margin-top: 10px;">
+                Click "Generate Insights" to analyze data.
+            </div>
+        </div>
+
+        <div class="controls-bar">
+            <div class="filter-group">
+                <label for="filter-municipality">Filter by Zone:</label>
+                <select id="filter-municipality">
+                    <option value="All">All Zones</option>
+                    <option value="North Zone">North Zone</option>
+                    <option value="South Zone">South Zone</option>
+                    <option value="East Zone">East Zone</option>
+                    <option value="West Zone">West Zone</option>
+                </select>
+            </div>
+            
+            <label class="toggle-container">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="show-verified-checkbox">
+                    <span class="toggle-slider"></span>
+                </div>
+                <div class="toggle-label">
+                    Show Verified History
+                    <small>Include resolved & verified items</small>
+                </div>
+            </label>
+        </div>
+
+        <h2>Grievance Management</h2>
+        <div id="admin-grievances" class="dashboard-grid">
+            <!-- Admin view of grievances -->
+        </div>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+    <script type="module">
+        import { auth, signOut } from './js/ai.js';
+        document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await signOut(auth);
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

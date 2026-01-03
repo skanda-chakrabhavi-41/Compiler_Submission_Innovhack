@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Grievance Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🏛️ Citizen Grievance Portal</h1>
+        <nav id="nav-links">
+            <a href="social.html">Community Voice</a>
+            <a href="#" id="logoutBtn" style="display: none;">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Auth Section -->
+        <div id="auth-section" class="auth-container">
+            <h2 id="auth-title">Login</h2>
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Password" required>
+                
+                <!-- Profile Fields for Signup -->
+                <div id="signup-fields" style="display: none;">
+                    <input type="text" id="signup-name" placeholder="Full Name">
+                    <input type="text" id="signup-address" placeholder="House Address">
+                </div>
+
+                <button type="submit" id="auth-submit">Login</button>
+            </form>
+            <div style="text-align: center; margin: 10px 0;">
+                <!-- Removed Google Sign In -->
+            </div>
+            
+            <button class="secondary" id="toggle-auth" type="button">Need an account? Sign Up</button>
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="admin_login.html" style="font-size: 0.9rem;">Go to Admin Portal</a>
+            </div>
+        </div>
+
+        <!-- User Dashboard Section -->
+        <div id="user-dashboard" style="display: none;">
+            <div class="analytics-panel">
+                <h2>Submit a New Grievance</h2>
+                <form id="grievance-form">
+                    <input type="text" id="full-name" placeholder="Your Full Name" required>
+                    
+                    <!-- Address Fields -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="door-no" placeholder="Door No." required>
+                        <input type="text" id="area" placeholder="Area / Street" required>
+                    </div>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <input type="text" id="pincode" placeholder="Enter 6-digit Pincode" maxlength="6" pattern="[0-9]{6}" required>
+                        <small id="pincode-msg" style="color: var(--secondary-color); display: none;">Searching...</small>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="city" placeholder="City (Auto-filled)" readonly required style="background-color: #f1f5f9; cursor: not-allowed;">
+                        <input type="text" id="state" placeholder="State (Auto-filled)" readonly required style="background-color: #f1f5f9; cursor: not-allowed;">
+                    </div>
+                    <!-- End Address Fields -->
+
+                    <select id="municipality" required>
+                        <option value="">Select Municipality</option>
+                        <option value="North Zone">North Zone</option>
+                        <option value="South Zone">South Zone</option>
+                        <option value="East Zone">East Zone</option>
+                        <option value="West Zone">West Zone</option>
+                    </select>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Sanitation">Sanitation</option>
+                        <option value="Roads">Roads</option>
+                        <option value="Water Supply">Water Supply</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="title" placeholder="Subject" required>
+                    <textarea id="description" rows="4" placeholder="Describe your grievance in detail..." required></textarea>
+                    
+                    <label for="grievance-photo">Upload Photo (Required):</label>
+                    <input type="file" id="grievance-photo" accept="image/*" required>
+                    
+                    <button type="submit">Submit Grievance</button>
+                </form>
+            </div>
+
+            <h2>My Grievances</h2>
+            <div id="my-grievances" class="dashboard-grid">
+                <!-- Grievances will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/user.js"></script>
+</body>
+</html>

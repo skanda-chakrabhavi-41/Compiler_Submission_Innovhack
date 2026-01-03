@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Voice - AI Powered</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>📢 Community Voice</h1>
+        <nav>
+            <a href="index.html">Login Portal</a>
+            <!-- <a href="#" id="logoutBtn">Logout</a> -->
+        </nav>
+    </header>
+
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2>Trending Issues & Updates</h2>
+            <p>AI-curated posts highlighting critical community issues and success stories.</p>
+        </div>
+
+        <div id="social-feed">
+            <!-- AI Generated Posts -->
+        </div>
+    </div>
+
+    <script type="module" src="js/social.js"></script>
+    <!-- <script type="module">
+        import { auth, signOut } from './js/ai.js';
+        document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await signOut(auth);
+            window.location.href = "index.html";
+        });
+    </script> -->
+</body>
+</html>
